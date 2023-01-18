@@ -1,0 +1,1 @@
+## In this folder are the processed PNG files
