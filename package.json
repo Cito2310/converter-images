@@ -1,12 +1,11 @@
 {
   "name": "converter-images-to-png",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "This app convert files to png",
-  "main": "index.js",
+  "main": "dir/index.js",
   "scripts": {
     "dev": "start tsc -w && start nodemon dir/dev.js",
-    "preview": "tsc && node dir/",
-    "build": "tsc && npx pkg -t node16-macos-x64,node16-linux-x64,node16-win-x64 dir/index.js"
+    "start": "tsc && node dir/"
   },
   "author": "Cito2310",
   "license": "ISC",
@@ -17,7 +16,6 @@
   },
   "dependencies": {
     "cli-color": "^2.0.3",
-    "pkg": "^5.8.0",
     "sharp": "^0.31.3"
   }
 }
