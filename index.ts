@@ -1,47 +1,37 @@
-// import { mainMenu, AllItemsMenu, ItemsWithIdMenu, AllTablesMenu, pause, AllTablesWithItemsMenu } from './helpers/menus';
-// import prompts from 'prompts';
-// import fs from 'fs';
-// import { getTableItemsWithID } from './helpers/getTableItemsWithID';
+import path from "path";
+import sharp from "sharp";
+import fs from 'fs';
+import clc from "cli-color";
 
-// const tablesPath = "./assets/Spawns";
-// const itemsPath = "./assets/Items";
+const inputPath = "./input"
+const outputPath = path.join(__dirname, "../output");
 
-// const main = async() => {
-//     console.clear()
+const formatValid = [
+    ".jpeg",
+    ".jpg",
+    ".webp",
+]
 
-//     let opt = 9;
+fs.readdirSync(inputPath)
+    .map(fileNameWithExtension => {
+        const filePath = path.join(__dirname, "../", inputPath, fileNameWithExtension);
+        const fileName = path.parse( filePath ).name
+        const fileExt = path.parse( filePath ).ext
 
-//     do {
-//         // console.clear()
-//         opt = await mainMenu()
+        // check format
+        if ( !formatValid.includes( fileExt ) ) {
+            console.log( clc.red(
+                `El archivo no se pudo procesar - ${fileNameWithExtension}`
+            ));
+            return;
+        }
 
-//         try {
-//             switch (opt) {
-//                 case 1: 
-//                     try {
-//                         const {id}: {id: number} = await prompts({
-//                             type: "text",
-//                             message: "Introducir el ID de la tabla",
-//                             name: "id",
-//                             validate: (id: string) => Number.isInteger(Number(id))
-                            
-//                         });
-//                         fs.writeFileSync(`./out/items-${id}.json` ,JSON.stringify((getTableItemsWithID(itemsPath, tablesPath, id))));
-                        
-//                     } catch (error) { console.log(error);await pause() }
+        // process image
+        sharp(filePath)
+            .toFormat("png")
+            .toFile( outputPath + `/${fileName}.png` )
 
-//                     break;
-                
-//                 case 2: AllTablesMenu(tablesPath); break;
-    
-//                 case 3: AllItemsMenu(itemsPath); break;
-
-//                 case 4: AllTablesWithItemsMenu(itemsPath, tablesPath); break;
-            
-//                 default: break;
-//             }
-//         } catch (error) {}
-
-//     } while (opt != 0);
-// }
-// main()
+        console.log( clc.green(
+            `El archivo se proceso - ${fileNameWithExtension}`
+        ))
+    })
