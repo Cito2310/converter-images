@@ -1,6 +1,6 @@
 {
   "name": "converter-images-to-png",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "This app convert files to png",
   "main": "dir/index.js",
   "scripts": {
