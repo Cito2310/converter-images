@@ -1,6 +1,13 @@
-# Converter Images To Png
+# ELECTRON-REACT-TEMPLATE
+This is a basic template for developing a desktop application with Electron, React.js and Typescript.  
+It also allows you to package the application in an .exe with Electron-builder
 
-## How to use
-1. In the folder "input" add the files to process
-2. In the terminal put "npm run start"
-3. The processed files will be in the folder "output"
+## INSTALLATION
+To start using this template you must follow the following steps:  
+1. Install package with `npm install`  
+2. Change *title* in index.html  
+3. Change *name* in package.json  
+
+## PACKAGE
+To package the application you must place in the terminal
+``npm run build``

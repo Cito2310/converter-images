@@ -1,21 +1,50 @@
 {
-  "name": "converter-images-to-png",
-  "version": "2.0.1",
-  "description": "This app convert files to png",
-  "main": "dir/index.js",
-  "scripts": {
-    "dev": "start tsc -w && start nodemon dir/dev.js",
-    "start": "tsc && node dir/"
-  },
+  "name": "converter-images",
+  "version": "3.0.0",
   "author": "Cito2310",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/cli-color": "^2.0.2",
-    "@types/node": "^18.11.15",
-    "@types/sharp": "^0.31.1"
-  },
+  "description": "",
+  "keywords": [ "electron", "react", "template", "typescript", "basic" ],
+  "main": "build/electron/main.js",
+  "private": true,
   "dependencies": {
-    "cli-color": "^2.0.3",
-    "sharp": "^0.31.3"
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
+  },
+  "scripts": {
+    "dev": "concurrently \"cross-env BROWSER=none react-scripts start\" \"wait-on http://127.0.0.1:3000 && tsc -p electron -w\" \"wait-on http://127.0.0.1:3000 && tsc -p electron && electron .\"",
+    "build": "react-scripts build && tsc -p electron && electron-builder"
+  },
+  "build": {
+    "extends": null,
+    "files": [
+      "build/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "electron": "^22.2.0",
+    "electron-builder": "^23.6.0",
+    "typescript": "^4.9.5",
+    "wait-on": "^7.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

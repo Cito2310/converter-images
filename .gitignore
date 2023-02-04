@@ -1,9 +1,3 @@
-node_modules
-
-output/*
-!output/Readme.md
-
-input/*
-!input/Readme.md
-
-dir
+/node_modules
+/build
+/dist
